@@ -1,5 +1,5 @@
 from game.Guesser import Guesser
-from game.Word import Words
+from game.terminal_service import TerminalService
 from game.Jumper import Jumper
 
 
@@ -23,7 +23,7 @@ class Director:
         self._jumper = Jumper()
         self._is_playing = True
         self._guesser = Guesser()
-        self._words = Words()
+        self._terminal_service = TerminalService()
         
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -31,6 +31,8 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        self._jumper.print_jumper()
+
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
@@ -41,9 +43,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        
-        self._jumper.update_jumper()
-        #self._words.show_word()
+        self.word_in_progress = self._guesser.guess()
         
         
     def _do_updates(self):
@@ -51,10 +51,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self.word_in_progress = self._guesser.guess()
-        
-
-        
+        self._jumper.update_jumper(self._guesser.guesser)
 
     def _do_outputs(self):
         """Provides a hint for the seeker to use.
@@ -63,3 +60,7 @@ class Director:
         """
         final_word = ''.join(self.word_in_progress)
         print(f'{final_word}\n')
+
+        if self._guesser.word == final_word:
+            self._terminal_service.write_text('You Win!')
+            quit()
