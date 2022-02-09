@@ -29,20 +29,25 @@ class Jumper:
         self._guesser = Guesser()
 
         
-    def update_jumper(self):
+    def update_jumper(self,guess):
         """Updates the Jumpers image
         
         Returns:
            self._jumper
         """
-        if self._guesser is False: 
+        if guess == False: 
             self._jumper.pop(0)
             self.trys -= 1
         if self.trys == 0:
-            self._jumper.insert(0,'x')
+            self._jumper.insert(0,'   x  ')
             for i in range(len(self._jumper)):
                 print(self._jumper[i])
+            print('Game Over')
             quit()
         for i in range(len(self._jumper)):
             print(self._jumper[i])
-        return
+        return 
+
+    def print_jumper(self):
+        for i in range(len(self._jumper)):
+            print(self._jumper[i])
