@@ -1,4 +1,6 @@
-from game.director import Director
+import random
+class Words:
 
-director = Director()
-director.start_game()
+    def __init__(self):
+        self.list = ['stack', 'over', 'flow']
+        word = random.choice(self.list)
