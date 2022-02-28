@@ -1,5 +1,4 @@
 from game.Guesser import Guesser
-	
 
 class Jumper:
     """Updates the status of Jumper, showing the guesser how many guess they have left. 
@@ -12,35 +11,33 @@ class Jumper:
     """
     
 
-
     def __init__(self):
         """Constructs a new Jumper.
         Args:
             self (Jumper): An instance of Jumper.
         """
         self._jumper = ['  ___',
-                        ' /___\ ',
-                        ' \   / ',
-                        '  \ / ',
-                        '   O  ',
-                        '  /|\ ',
-                        '  / \ ',
-                        '      ',
-                        '^^^^^^^']
+        ' /___\ ',
+        ' \   / ',
+        '  \ / ',
+        '   O  ',
+        '  /|\ ',
+        '  / \ ',
+        '      ',
+        '^^^^^^^']
         self.trys = 5
         self._guesser = Guesser()
-
 
         
     def update_jumper(self,guess):
         """Updates the Jumpers image
         
         Returns:
-            self._jumper
+           self._jumper
         """
         if guess == False: 
             self._jumper.pop(0)
-            self.trys = self.trys - 1
+            self.trys -= 1
         if self.trys == 0:
             self._jumper.insert(0,'   x  ')
             for i in range(len(self._jumper)):
@@ -50,7 +47,6 @@ class Jumper:
         for i in range(len(self._jumper)):
             print(self._jumper[i])
         return 
-
 
     def print_jumper(self):
         for i in range(len(self._jumper)):

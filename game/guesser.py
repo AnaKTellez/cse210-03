@@ -28,7 +28,7 @@ class Guesser:
         for self.j in self.word:
             self._word_in_progress += '_'
 
-    def guess (self):  
+    def guess (self): 
         """Gets the guess from the player and compare it with the secret word.
         Args:
             self (Guesser): An instance of Guesser.
@@ -38,7 +38,7 @@ class Guesser:
         """
         self.guesser = False
 
-        guess = input('Enter a letter [a-z]: ')
+        guess = input('Guess a letter [a-z]: ')
 
         for idx, character in enumerate(self.word):
             if character == guess:
